@@ -2,30 +2,23 @@ const config = {
     locale: 'en',
     i18n: {
         en: {
-            loading: 'Loading...'
+            loading: 'Loading...',
+            init: 'Initializing...'
+        },
+        de: {
+            loading: 'Lade...',
+            init: 'Initialisieren...'
+        },
+        es: {
+            loading: 'Cargando...',
+            init: 'Inicializando...'
         }
-    }
-}
-
-function debugSleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-let count = 1;
-
-async function debugLog() {
-    while (true) {
-        let event = new Event('message');
-        event.data = {eventName: 'onLogLine', message: 'Test ' + count};
-        window.dispatchEvent(event)
-        count++;
-        await debugSleep(2000);
     }
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById('loading').innerText = config.i18n[config.locale].loading;
-    debugLog();
+    document.getElementById('loading').innerText = config.i18n[config.locale].loading;
 });
 
 window.addEventListener('message', function (e) {
